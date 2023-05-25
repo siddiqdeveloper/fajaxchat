@@ -4,15 +4,15 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<meta name="keywords" content="@yield('keywords')">
-	<meta name="description" content="@yield('description')"> 
+	<meta name="keywords" content="<?php echo $__env->yieldContent('keywords'); ?>">
+	<meta name="description" content="<?php echo $__env->yieldContent('description'); ?>"> 
 
-	<title> @yield('title')</title>
+	<title> <?php echo $__env->yieldContent('title'); ?></title>
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 
 	<!--         <meta name="viewport" content="width=device-width, initial-scale=1"> -->
-	<meta name="csrf-token" content="{!! csrf_token() !!}">
+	<meta name="csrf-token" content="<?php echo csrf_token(); ?>">
 	<!-- Favicon -->
 	<link rel="shortcut icon" type="image/png" href="/assets/images/mk-logo.png">
 				<!-- CSS
@@ -1681,7 +1681,7 @@
 
 								</body>
 
-								<script type="text/javascript" src="{{asset('jquery.min.js')}}"></script>
+								<script type="text/javascript" src="<?php echo e(asset('jquery.min.js')); ?>"></script>
 								<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/alertify.js"></script>
 							 <script type="text/javascript"  src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.js"></script>
 
@@ -1718,7 +1718,7 @@
 
 				
 
-			@yield('javascript');
+			<?php echo $__env->yieldContent('javascript'); ?>;
 
 
 
@@ -2634,4 +2634,4 @@ if (readCookie('fab_chat_username') === null || readCookie('fab_chat_email') ===
         </script>
 
 				
-					</html>
+					</html><?php /**PATH C:\wamp64\www\fajaxchat\resources\views/base.blade.php ENDPATH**/ ?>
