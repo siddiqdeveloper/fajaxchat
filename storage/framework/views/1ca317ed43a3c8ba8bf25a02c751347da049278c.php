@@ -2275,10 +2275,9 @@ if (readCookie('fab_chat_username') === null || readCookie('fab_chat_email') ===
 				var text = {text:'',url:url};
 				//socket.emit('sendtoadmin',{text:text,email:Cookies.get('useremail')});  
 				$.ajax({
-						url: 'http://chat.ashanaturals.in/api/usermessage/update',
-					data: {url:url,fromid:'',toid :myid,msg :text,name : 'user' ,type:'user',email:Cookies.get('useremail')},
-					dataType: 'json',
-					type: 'POST',
+						url: 'http://127.0.0.1:3434/api/usermessage/update',
+					data: {file_type:'mp3',url:url,fromid:'',toid :myid,msg :text,name : 'user' ,type:'user',email:Cookies.get('useremail')},
+					type: 'get',
 					success: function(res){
 						if(res.status == 'success'){
 							console.log(res.history);
@@ -2294,7 +2293,7 @@ if (readCookie('fab_chat_username') === null || readCookie('fab_chat_email') ===
 			function get() {
 
 				$.ajax({
-					url: 'http://chat.ashanaturals.in/api/get/messages',
+					url: 'http://127.0.0.1:3434/api/get/messages',
 					data: {email:Cookies.get('useremail')},
 					type: 'get',
 					crossDomain: true,
@@ -2353,6 +2352,9 @@ if (readCookie('fab_chat_username') === null || readCookie('fab_chat_email') ===
 				}
 			}
 
+
+			
+
 			
 			
 
@@ -2365,7 +2367,10 @@ if (readCookie('fab_chat_username') === null || readCookie('fab_chat_email') ===
 			
 			console.log(Cookies.get('userchatdata'));
 			if(Cookies.get('userchatdata')){
+
 				hideChat(1); 
+				getAllHistory();
+				console.log(Cookies.get('userchatdata'));
 			}else{
 				hideChat(0);
 
@@ -2593,15 +2598,16 @@ if (readCookie('fab_chat_username') === null || readCookie('fab_chat_email') ===
                 const recorder = await recordAudio();
                 let audio; // filled in end cb
 
+                console.log(btn);
                 const recStart = e => {
                     recorder.start();
                     btn.initialValue = btn.value;
-                    btn.value = "recording...";
+                    btn.value = "recording...again click to send";
                 }
                 const recEnd = async e => {
                     btn.value = btn.initialValue;
                     audio = await recorder.stop();
-                    audio.play();
+                  //  audio.play();
                     uploadAudio(audio.audioBlob);
                 }
 
@@ -2611,25 +2617,50 @@ if (readCookie('fab_chat_username') === null || readCookie('fab_chat_email') ===
                         return;
                     }
                     const f = new FormData();
-                    f.append("nonce", window.nonce);
-                    f.append("payload", a);
+                   // f.append("nonce", window.nonce);
+                    f.append("files[]", a);
 
-                    fetch("save_audio.php", {
+                 //    $.ajax({
+					            //     url: 'http://127.0.0.1:3434/api/imageupload',
+					            //     data: f,
+					           
+					            //     type: 'get',
+					            //     success: function(res){
+					            //         console.log(res);
+					            //         return false;
+					            //     }, error: function(e){
+					                   
+					            //     }
+					            // });
+
+
+
+                    fetch("http://127.0.0.1:3434/api/imageupload", {
                         method: "POST",
                         body: f
-                    })
-                    .then(_ => {
-                        document.body.innerHTML += `
-                            <br/> <a href="audio.wav">saved; click here</a>
-                        `
-                    });
+                    }).then(response => response.json())
+										  .then(data => {
+										     
+										      
+                    	 userSendimg(data.files[0].url);
+
+                    	 var datas = data.files[0].url;
+
+
+                    	  var text =  '<audio controls><source src="'+datas+'" type="audio/mpeg"></audio>';
+              				 var img = '<i class="zmdi zmdi-account"></i>';
+        							  $('#chat_converse').append('<div style="background:white!important" class="chat_msg_item chat_msg_item_user"><div class="chat_avatar"><img src="/images/default-user.jpg" />' + img + '</div>' + text + '</div>');
+           
+										 })
+
                 }
 
 
                 btn.addEventListener("mousedown", recStart);
                 btn.addEventListener("touchstart", recStart);
-                window.addEventListener("mouseup", recEnd);
-                window.addEventListener("touchend", recEnd);
+                 btn.addEventListener("mouseup", recEnd);
+              // window.addEventListener("mouseup", recEnd);
+               // window.addEventListener("touchend", recEnd);
             })();
         </script>
 

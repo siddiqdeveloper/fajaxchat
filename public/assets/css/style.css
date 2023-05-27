@@ -20996,10 +20996,10 @@ span:hover:after {
     display: block;
 }
 
-audio {
+/*audio {
     display: none;
 }
-
+*/
 #mainwrap {
     position: fixed;
     width: 100%;
@@ -21449,10 +21449,10 @@ audio {
 /* Audio Player Styles
             ================================================== */
 
-audio {
+/*audio {
     display: none;
 }
-
+*/
 #mainwrap {
     position: fixed;
     width: 30%;
