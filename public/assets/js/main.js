@@ -3,7 +3,7 @@ function getAllHistory(){
 
                 $.ajax({
                    
-              url: 'https://chat.ashanaturals.inturals.in/api/getAllHistory',
+              url: 'https://chat.ashanaturals.in/api/getAllHistory',
               data: {name : Cookies.get('username') ,type:'user',email:Cookies.get('useremail')},
               dataType: 'json',
               type: 'get',
@@ -79,7 +79,7 @@ function getAllHistory(){
             //            .emit('sendtoadmin',{text:text,email:Cookies.get('useremail')});  
                 $.ajax({
                    
-                    url: 'https://chat.ashanaturals.inturals.in/api/usermessage/update',
+                    url: 'https://chat.ashanaturals.in/api/usermessage/update',
                     data: {fromid:'',toid :myid,msg :text,name : Cookies.get('username') ,type:'user',email:Cookies.get('useremail')},
                     dataType: 'json',
                     type: 'get',
@@ -230,7 +230,7 @@ $('.openchartwindow').click(function() {
           var text = {text:'',url:url};
          //  socket.emit('sendtoadmin',{text:text,email:Cookies.get('useremail')});  
             $.ajax({
-                url: 'https://chat.ashanaturals.inturals.in/api/usermessage/update',
+                url: 'https://chat.ashanaturals.in/api/usermessage/update',
                 data: {url:url,fromid:'',toid :myid,msg :text,name : 'user' ,type:'user',email:Cookies.get('useremail')},
            
                 type: 'get',
@@ -247,7 +247,7 @@ $('.openchartwindow').click(function() {
 
           
              $('#my-file').fileupload({
-        url: 'https://chat.ashanaturals.inturals.in/api/imageupload',
+        url: 'https://chat.ashanaturals.in/api/imageupload',
         type:'post',
         done: function (e, data) {
             $.each(data.result.files, function (index, file) {
