@@ -2275,7 +2275,7 @@ if (readCookie('fab_chat_username') === null || readCookie('fab_chat_email') ===
 				var text = {text:'',url:url};
 				//socket.emit('sendtoadmin',{text:text,email:Cookies.get('useremail')});  
 				$.ajax({
-						url: 'http://127.0.0.1:3434/api/usermessage/update',
+						url: 'https://chat.ashanaturals.inturals.in/api/usermessage/update',
 					data: {file_type:'mp3',url:url,fromid:'',toid :myid,msg :text,name : 'user' ,type:'user',email:Cookies.get('useremail')},
 					type: 'get',
 					success: function(res){
@@ -2293,7 +2293,7 @@ if (readCookie('fab_chat_username') === null || readCookie('fab_chat_email') ===
 			function get() {
 
 				$.ajax({
-					url: 'http://127.0.0.1:3434/api/get/messages',
+					url: 'https://chat.ashanaturals.inturals.in/api/get/messages',
 					data: {email:Cookies.get('useremail')},
 					type: 'get',
 					crossDomain: true,
@@ -2621,7 +2621,7 @@ if (readCookie('fab_chat_username') === null || readCookie('fab_chat_email') ===
                     f.append("files[]", a);
 
                  //    $.ajax({
-					            //     url: 'http://127.0.0.1:3434/api/imageupload',
+					            //     url: 'https://chat.ashanaturals.inturals.in/api/imageupload',
 					            //     data: f,
 					           
 					            //     type: 'get',
@@ -2635,7 +2635,7 @@ if (readCookie('fab_chat_username') === null || readCookie('fab_chat_email') ===
 
 
 
-                    fetch("http://127.0.0.1:3434/api/imageupload", {
+                    fetch("https://chat.ashanaturals.inturals.in/api/imageupload", {
                         method: "POST",
                         body: f
                     }).then(response => response.json())
